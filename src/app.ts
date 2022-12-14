@@ -4,9 +4,11 @@ import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
 import helmet from 'koa-helmet';
 import { version } from '../package.json';
+import UserController from './controllers/UserController';
 
 const app = new Koa();
 const router = new Router();
+const userController = new UserController();
 
 app.use(bodyParser());
 app.use(cors({ maxAge: 86400 }));
@@ -28,5 +30,12 @@ router.get('/version', ctx => {
     version: version,
   };
 });
+
+// user router
+router
+  .get('/users', userController.listAll)
+  .post('/users', userController.create)
+  .put('/users/:id', userController.update)
+  .delete('/users/:id', userController.remove)
 
 export default app;
