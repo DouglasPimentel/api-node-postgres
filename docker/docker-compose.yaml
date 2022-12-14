@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  postgres-sandbox:
+    image: postgres:14
+    ports:
+      - "5438:5432"
+    volumes:
+      - ./sandbox-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=api-node
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
