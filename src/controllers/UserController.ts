@@ -10,7 +10,7 @@ interface UserRequest {
 }
 
 export default class UserController {
-  async listAll(ctx: Koa.ParameterizedContext) {
+  async listAll(ctx: Koa.Context) {
     try {
       const users = await prisma.user.findMany({
         orderBy: {
@@ -87,7 +87,7 @@ export default class UserController {
     }
   }
 
-  async update(ctx: Koa.ParameterizedContext) {
+  async update(ctx: Koa.Context) {
     const id = parseInt(ctx.params.id);
     const data = <UserRequest>ctx.request.body;
 
@@ -130,7 +130,7 @@ export default class UserController {
     }
   }
 
-  async remove(ctx: Koa.ParameterizedContext) {
+  async remove(ctx: Koa.Context) {
     const id = parseInt(ctx.params.id);
     
     const userExist = findUser(id);
