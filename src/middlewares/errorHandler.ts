@@ -17,7 +17,7 @@ export default async function errorHandler(ctx: Koa.Context, next: Koa.Next) {
     };
     await next();
   } catch (err: any) {
-    ctx.status = err.statusCOde || err.status || 500;
+    ctx.status = err.statusCode || err.status || 500;
     ctx.response.body = {
       success: false,
       message: err.message,
